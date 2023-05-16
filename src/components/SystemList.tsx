@@ -75,14 +75,13 @@ class SystemList extends Component {
         {showPopup && (
           <dialog open={showPopup} onClose={this.closeDialog}>
             <h2>הוספת מערכת חדשה</h2>
-
             <input type='test' placeholder='enter system name' />
             <br />
             <input type='test' placeholder='enter system descerption' />
             <br />
             <input type='file' />
             <br />
-            <button onClick={this.closeDialogAndSaveNewSystem}>אישור</button>
+            <button onClick={() => this.closeDialogAndSaveNewSystem(dialog)}>אישור</button>
             <button onClick={this.closeDialog}>סגור</button>
           </dialog>
         )}
