@@ -6,8 +6,8 @@ import SystemList from './components/SystemList';
 function App() {
   return (
     <div className="App">
-      <h1>Thank You Hashem!!!!!</h1>
-      <h1>So Much.............</h1>
+      {/* <h1>Thank You Hashem!!!!!</h1>
+      <h1>So Much.............</h1> */}
       {/* <header className="App-header">
         <img src={logo} className="App-logo" alt="logo" />
         <p>

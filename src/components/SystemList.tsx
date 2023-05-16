@@ -10,17 +10,44 @@ class SystemList extends Component {
 
   state: systemListState = {
     systemsList: [],
-    showPopup: false
+    showPopup: false,
   }
   componentDidMount() {
     const storedSystems = localStorage.getItem('systems');
-    const systems = storedSystems ? JSON.parse(storedSystems) : [];
+    const allSystems = storedSystems ? JSON.parse(storedSystems) : null;
+    allSystems ? localStorage.setItem('systems', JSON.stringify(allSystems)) : '';
+    this.setState({ systemsList: storedSystems ? JSON.parse(storedSystems) : [] })
   }
+  openDialog = () => {
+    this.setState({ showPopup: true });
+  };
 
+  closeDialog = () => {
+    this.setState({ showPopup: false });
+  };
+  closeDialogAndSaveNewSystem = () => {
+    const { systemsList } = this.state;
+    const newSystem: system = {
+      id: systemsList.length,
+      name: 'New System',
+      description: 'New System Description',
+      image: 'default-image.png',
+      link: 'https://example.com',
+      isFavorite: false
+    }
+
+    const updatedSystemsList = systemsList.push(newSystem);
+
+    this.setState({ systemsList: updatedSystemsList });
+    localStorage.setItem('systems', JSON.stringify(updatedSystemsList));
+
+    this.setState({ showPopup: false });
+  }
   render() {
     console.log("systems list!");
     console.log(this.state.systemsList)
 
+    const { systemsList, showPopup } = this.state
     var settings = {
       dots: true,
       infinite: true,
@@ -34,9 +61,9 @@ class SystemList extends Component {
 
 
         <Slider {...settings}>
-          {systems.map((sys: system, index: number) => (
+          {systemsList.map((sys: system, index: number) => (
             <div key={index}>
-              <SystemCard key={index} system={sys} isFavorite={sys.isFavorite} />
+              <SystemCard key={index} system={sys} />
             </div>
           ))}
         </Slider>
@@ -45,13 +72,20 @@ class SystemList extends Component {
         <br />
         <br />
         <button onClick={() => this.setState({ showPopup: true })}>הוספת מערכת</button>
-        {
-          this.state.showPopup ? <dialog>
-            <TextField id="outlined-basic" label="Outlined" variant="outlined" />
+        {showPopup && (
+          <dialog open={showPopup} onClose={this.closeDialog}>
+            <h2>הוספת מערכת חדשה</h2>
 
-            {/* <TextField type='text' placeholder='Name'/> */}
-          </dialog> : ''
-        }
+            <input type='test' placeholder='enter system name' />
+            <br />
+            <input type='test' placeholder='enter system descerption' />
+            <br />
+            <input type='file' />
+            <br />
+            <button onClick={this.closeDialogAndSaveNewSystem}>אישור</button>
+            <button onClick={this.closeDialog}>סגור</button>
+          </dialog>
+        )}
       </div>
 
     );

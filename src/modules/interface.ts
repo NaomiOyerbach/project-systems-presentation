@@ -18,7 +18,7 @@ export interface systemCardState {
 }
 export const systems: system[] = [
     {
-        id: 1,
+        id: 0,
         name: "System 1",
         description: "This is system 1 description. Lorem ipsum dolor sit amet, consectetur adipiscing elit.",
         image: "img1.jpg",
@@ -27,7 +27,7 @@ export const systems: system[] = [
 
     },
     {
-        id: 2,
+        id: 1,
         name: "System 2",
         description: "This is system 2 description. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.",
         image: "img2.jpg",
@@ -35,7 +35,7 @@ export const systems: system[] = [
         isFavorite: false
     },
     {
-        id: 3,
+        id: 2,
         name: "System 3",
         description: "This is system 3 description. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.",
         image: "img3.webp",
@@ -43,7 +43,7 @@ export const systems: system[] = [
         isFavorite: false
     },
     {
-        id: 4,
+        id: 3,
         name: "System 4",
         description: "This is system 4 description. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.",
         image: "img4.jpg",
@@ -51,7 +51,7 @@ export const systems: system[] = [
         isFavorite: false
     },
     {
-        id: 5,
+        id: 4,
         name: "System 5",
         description: "This is system 5 description. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.",
         image: "img5.jpg",
@@ -59,7 +59,7 @@ export const systems: system[] = [
         isFavorite: false
     },
     {
-        id: 6,
+        id: 5,
         name: "System 6",
         description: "This is system 6 description. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.",
         image: "img6.jpg",
@@ -67,7 +67,7 @@ export const systems: system[] = [
         isFavorite: false
     },
     {
-        id: 7,
+        id: 6,
         name: "System 7",
         description: "This is system 7 description. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.",
         image: "img7.jpg",
@@ -86,4 +86,4 @@ export const favorites: system[] = [
         isFavorite: false
     },
 ]
-localStorage.setItem('systems', JSON.stringify(systems));
+// localStorage.setItem('systems', JSON.stringify(systems));
