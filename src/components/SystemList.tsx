@@ -2,15 +2,11 @@ import React, { Component, createRef } from 'react';
 import SystemCard from './SystemCard';
 import { systemListState, system, systems } from '../modules/interface';
 import Slider from "react-slick"
-
-
-import 'keen-slider/keen-slider.min.css';
-import KeenSlider, { KeenSliderInstance } from 'keen-slider';
+import "slick-carousel/slick/slick.css";
+import "slick-carousel/slick/slick-theme.css";
+import { TextField } from '@mui/material';
 
 class SystemList extends Component {
-
-  sliderRef = React.createRef<HTMLDivElement>();
-  sliderInstance: KeenSliderInstance | null = null;
 
   state: systemListState = {
     systemsList: [],
@@ -19,66 +15,42 @@ class SystemList extends Component {
   componentDidMount() {
     const storedSystems = localStorage.getItem('systems');
     const systems = storedSystems ? JSON.parse(storedSystems) : [];
-    //.setState({ systemsList: systems })
-    // if (systems === null)
-    this.sliderInstance = new KeenSlider(this.sliderRef.current!, {
-      slides: 1,
-      loop: true,
-      // slidesToShow:2,
-      // slideChanged:3,
-      breakpoints: {
-        '(min-width: 768px)': {
-          slides: systems.length,
-        },
-        '(min-width: 1200px)': {
-          slides: systems.length,
-        },
-      },
-    });
-
-  }
-  componentWillUnmount() {
-    if (this.sliderInstance) {
-      this.sliderInstance.destroy();
-    }
   }
 
   render() {
-    //  localStorage.setItem('systems', JSON.stringify(systems))
-
-    // Retrieve the systems array from session storage
-    // const storedSystems = localStorage.getItem('systems');
-    // const systems = storedSystems ? JSON.parse(storedSystems) : [];
     console.log("systems list!");
     console.log(this.state.systemsList)
 
-    const settings = {
+    var settings = {
       dots: true,
-      // infinite: true,
+      infinite: true,
       slidesToShow: 3,
       slidesToScroll: 1,
+      accessibility: true,
+      arrows: true,
     };
     return (
       <div>
 
-        <div ref={this.sliderRef} className="keen-slider">
-          {systems.map((value: system, index: number) => (
-            <div key={index} className="keen-slider__slide">
-              <SystemCard system={value} isFavorite={value.isFavorite} />
-            </div>
-          ))}
-        </div>
-        {/* <Slider {...settings}>
+
+        <Slider {...settings}>
           {systems.map((sys: system, index: number) => (
             <div key={index}>
-              <SystemCard system={sys} isFavorite={sys.isFavorite} />
-              {sys.name}
-            </div>           
+              <SystemCard key={index} system={sys} isFavorite={sys.isFavorite} />
+            </div>
           ))}
-        </Slider> */}
+        </Slider>
+        <br />
+        <br />
+        <br />
+        <br />
         <button onClick={() => this.setState({ showPopup: true })}>הוספת מערכת</button>
         {
-          this.state.showPopup ? <dialog></dialog> : ''
+          this.state.showPopup ? <dialog>
+            <TextField id="outlined-basic" label="Outlined" variant="outlined" />
+
+            {/* <TextField type='text' placeholder='Name'/> */}
+          </dialog> : ''
         }
       </div>
 
