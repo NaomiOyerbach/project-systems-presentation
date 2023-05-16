@@ -81,7 +81,7 @@ class SystemList extends Component {
             <br />
             <input type='file' />
             <br />
-            <button onClick={() => this.closeDialogAndSaveNewSystem(dialog)}>אישור</button>
+            <button onClick={() => this.closeDialogAndSaveNewSystem}>אישור</button>
             <button onClick={this.closeDialog}>סגור</button>
           </dialog>
         )}
