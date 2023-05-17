@@ -2,6 +2,31 @@
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
+**The purpose of the program:**
+1. Display a list of systems using a component that allows scrolling to the right or left.
+2. For each system - its name, its description, and a picture must be presented. Clicking on the system is a link to it.
+3. Allow adding a new system
+4. Allow the user to manage the addition of a system to favorites or removal from the user's favorites.
+Favorites are managed using the browser's sessionStorage.
+5. For the purpose of the test, create a list of systems in the code and save it using the browser's sessionStorage.
+
+**The list of systems consists of the following fields:**
+1. System code (number)
+2. System name (text up to 100 letters)
+3. System description (long text up to 255 letters)
+4. Background image
+5. Link
+
+
+**The resulting component should be included:**
+In this example, a central provider system is in favorites and there is an indication of a button with a full heart.
+The rest of the systems are not in the favorites and the button is of an empty heart.
+Clicking on the full heart removes the system from favorites.
+Clicking on the empty heart adds the system to favorites.
+The upper part of each component contains a background image, on which the name and description of the system are displayed.
+Only up to 100 characters of the system description should be displayed, and 3 dots should be displayed if the text is truncated.
+By clicking on the scroll buttons on the sides of the component, additional systems are displayed.
+
 ## Available Scripts
 
 In the project directory, you can run:
