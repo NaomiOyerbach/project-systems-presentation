@@ -9,9 +9,18 @@ export interface system {
 //session storage בעקרון זה צריך לבוא מה
 //אבל בנתיים אני מאתחלת את המערך כאן
 // Store the systems array in session storage
-export interface systemListState {
-    systemsList: system[],
-    showPopup: boolean
+export interface SystemListState {
+    systemsList: system[];
+    showPopup: boolean;
+    newSystem: newSystemState;
+  }
+export interface newSystemState{
+    id: number
+    name: string,
+    description: string, 
+    image: string,
+    link: string
+    isFavorite: false,
 }
 export interface systemCardState {
     isFavorite: boolean;
