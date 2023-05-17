@@ -18,7 +18,7 @@ Favorites are managed using the browser's sessionStorage.
 5. Link
 
 
-**The resulting component should look similar to what is drawn in the picture:**
+**The resulting component should be included:**
 In this example, a central provider system is in favorites and there is an indication of a button with a full heart.
 The rest of the systems are not in the favorites and the button is of an empty heart.
 Clicking on the full heart removes the system from favorites.
