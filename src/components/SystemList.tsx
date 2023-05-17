@@ -4,7 +4,11 @@ import { systemListState, system, systems } from '../modules/interface';
 import Slider from "react-slick"
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
-import { TextField } from '@mui/material';
+import { ButtonBase, TextField, Button } from '@mui/material';
+import { SystemDialogPopup } from './sys.style';
+import Textarea from '@mui/joy/Textarea';
+// import { Button, TextareaAutosize } from '@material-ui/core';
+
 
 class SystemList extends Component {
 
@@ -71,19 +75,28 @@ class SystemList extends Component {
         <br />
         <br />
         <br />
-        <button onClick={() => this.setState({ showPopup: true })}>הוספת מערכת</button>
+        <Button size='medium' variant='contained' color='inherit' onClick={() => this.setState({ showPopup: true })}>הוספת מערכת</Button>
         {showPopup && (
-          <dialog open={showPopup} onClose={this.closeDialog}>
+          <SystemDialogPopup open={showPopup} onClose={this.closeDialog}>
             <h2>הוספת מערכת חדשה</h2>
-            <input type='test' placeholder='enter system name' />
+            {/* <TextField></TextField> */}
+            <TextField type='text' label='enter system name'>שם מערכת</TextField>
             <br />
-            <input type='test' placeholder='enter system descerption' />
             <br />
-            <input type='file' />
+            <Textarea name="Solid" placeholder="Type in here…" variant="soft" minRows={3} />
+
             <br />
-            <button onClick={() => this.closeDialogAndSaveNewSystem}>אישור</button>
-            <button onClick={this.closeDialog}>סגור</button>
-          </dialog>
+            <TextField type='file' typeof='jpg' />
+            <br />
+            <br />
+            <br />
+            <div>
+              <Button size='small' variant='contained' color='inherit' onClick={() => this.closeDialogAndSaveNewSystem}>אישור</Button>
+              <br />
+              <Button size='small' variant='contained' color='inherit' onClick={this.closeDialog}>סגור</Button>
+            </div>
+
+          </SystemDialogPopup>
         )}
       </div>
 
