@@ -50,6 +50,7 @@ export const SystemCardATagStyle = styled.a`
     flex-direction: column;
     align-items: center;
     background-color: #ffffffde;
+    width:100%;
     // margin-bottom: -46px;
 `;
 export const DivDarkBackground = styled.div`
@@ -64,36 +65,19 @@ flex-direction: row;
 align-content: flex-end;
 justify-content: center;
 align-items: center;
+
 `
 
 export const SystemDialogPopup = styled.dialog`
-position: absolute;
-box-shadow: 2px 4px 8px black;
-border: none;
-margin-top: -247px;
-height: 441px;
-width: 383px;
-display: -webkit-box;
-display: -webkit-flex;
-display: -ms-flexbox;
-display: flex;
-border-radius: 5px;
--webkit-flex-direction: column;
--ms-flex-direction: column;
-flex-direction: column;
--webkit-flex-wrap: wrap;
--ms-flex-wrap: wrap;
-flex-wrap: wrap;
--webkit-align-content: center;
--ms-flex-line-pack: center;
-align-content: space-between;
--webkit-align-items: stretch;
--webkit-box-align: stretch;
--ms-flex-align: stretch;
-align-items: stretch;
--webkit-box-pack: end;
--webkit-justify-content: flex-end;
--ms-flex-pack: end;
-justify-content: flex-end;
-outline: none;
+    position: absolute;
+    box-shadow: 2px 4px 8px black;
+    border: none;
+    margin-top: -247px;
+    height: 441px;
+    width: 383px;
+    display: flex;
+    border-radius: 5px;
+    justify-content: flex-end;
+    outline: none;  
+    flex-direction: column
 `;

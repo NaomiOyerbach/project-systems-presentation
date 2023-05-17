@@ -33,6 +33,7 @@ const NextArrow: React.FC<CustomArrowProps> = ({ className, style, onClick }) =>
 
 class SystemList extends Component {
 
+  //Initialize the state 
   state: SystemListState = {
     systemsList: [],
     showPopup: false,
@@ -53,33 +54,50 @@ class SystemList extends Component {
     allSystems === null ? localStorage.setItem('systems', JSON.stringify(systems)) : '';
     this.setState({ systemsList: storedSystems ? JSON.parse(storedSystems) : [] })
   }
+
+  //A function to open the popup
   openDialog = () => {
     this.setState({ showPopup: true });
   };
 
+  //A function to close the popup
   closeDialog = () => {
     this.setState({ showPopup: false });
   };
-  // handleInputChange = (event: React.ChangeEvent<HTMLInputElement>) => {
-  //   const { name, value } = event.target;
-  //   this.setState((prevState) => ({
-  //     newSystem: {
-  //       ...prevState.newSystem,
-  //       [name]: value,
-  //     },
-  //   }));
-  // };
 
+  //A function to add the new Image URL in a safe way
+  handleImageChange = (event: React.ChangeEvent<HTMLInputElement>) => {
+    if (event.target.files && event.target.files[0]) {
+      const file = event.target.files[0];
+      const reader = new FileReader();
+
+      reader.onload = (e) => {
+        if (e.target && e.target.result) {
+          const dataURL = e.target.result as string;
+
+          this.setState((prevState: SystemListState) => ({
+            newSystem: {
+              ...prevState.newSystem,
+              image: dataURL,
+            },
+          }));
+        }
+      };
+
+      reader.readAsDataURL(file);
+    }
+  };
+
+
+  //A function to add a new system
   closeDialogAndSaveNewSystem = () => {
     const { systemsList, newSystem } = this.state;
-    // this.setState({id:systemsList.length })
     newSystem.id = systemsList.length
     const updatedSystemsList = [...systemsList, newSystem];
-    console.log("new sys:  ", this.state.newSystem);
-
     this.setState({ systemsList: updatedSystemsList });
     localStorage.setItem('systems', JSON.stringify(updatedSystemsList));
 
+    //resetting the state
     this.setState({
       showPopup: false,
       newSystem: {
@@ -97,6 +115,7 @@ class SystemList extends Component {
   render() {
 
     const { systemsList, showPopup, newSystem } = this.state;
+    //Setting of the silder - npm react-slick
     const settings = {
       dots: true,
       infinite: true,
@@ -128,67 +147,44 @@ class SystemList extends Component {
           <DivDarkBackground>
             <SystemDialogPopup open={showPopup} onClose={this.closeDialog}>
               <h2>הוספת מערכת חדשה</h2>
-              <TextField
-                name='name'
-                type='text'
-                label='enter system name'
-                value={newSystem.name}
+              <TextField variant='outlined' name='name' type='text' label='enter system name' value={newSystem.name}
                 onChange={(event) =>
                   this.setState(() => ({
                     newSystem: {
                       ...newSystem,
                       name: event.target.value,
                     },
-                  }))
-                }
-              >
-                שם מערכת
-              </TextField>
+                  }))} />
               <br />
-              <br />
-              <Textarea
-                name='description'
-                placeholder='Type in here…'
-                variant='soft'
-                minRows={3}
-                value={newSystem.description}
+
+              <TextField multiline variant='outlined' label="description" name='description' placeholder='Type your system`s description in here…' minRows={2} maxRows={3} value={newSystem.description}
                 onChange={(event) =>
                   this.setState(() => ({
                     newSystem: {
                       ...newSystem,
                       description: event.target.value,
                     },
-                  }))
-                }
-              />
+                  }))} />
+              <br />
+              <Button
+                variant="contained"
+                component="label"
+              >
+                Upload Image
+                <input
+                  type="file"
+                  hidden
+                  onChange={this.handleImageChange} accept='image/*'
+                  color='secondary'
+                />
+              </Button>
+              {/* <TextField fullWidth name='image' type='file' onChange={this.handleImageChange} inputProps={{ accept: 'image/*' }} /> */}
+              <br />
+              <br />
+              <br />
 
-              <br />
-              <TextField
-                name='image'
-                type='file'
-                typeof='jpg'
-                value={newSystem.image}
-                onChange={(event) =>
-                  this.setState(() => ({
-                    newSystem: {
-                      ...newSystem,
-                      image: event.target.value,
-                    },
-                  }))
-                }
-              />
-              <br />
-              <br />
-              <br />
               <ButtonGroup variant='outlined' aria-label='outlined button group'>
-                <Button
-                  size='small'
-                  variant='contained'
-                  color='inherit'
-                  onClick={this.closeDialogAndSaveNewSystem}
-                >
-                  אישור
-                </Button>
+                <Button size='small' variant='contained' color='inherit' onClick={this.closeDialogAndSaveNewSystem}>  אישור </Button>
                 <br />
                 <Button size='small' variant='contained' color='inherit' onClick={this.closeDialog}>סגור</Button>
               </ButtonGroup>

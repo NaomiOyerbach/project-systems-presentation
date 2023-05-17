@@ -21,7 +21,7 @@ class SystemCard extends Component<SystemCardProps, systemCardState> {
     }
 
     private handleChangeFavorite = () => {
-        console.log("before", this.state.isFavorite);  
+        console.log("before", this.state.isFavorite);
         this.setState(
             (prevState) => ({ isFavorite: !prevState.isFavorite }),
             () => {
@@ -38,17 +38,17 @@ class SystemCard extends Component<SystemCardProps, systemCardState> {
 
     render() {
         const { system } = this.props;
-        const imgUrl = `/assets/${system.image}`;
+        const imgUrl = system.image;
         return (
             <div>
                 <SystemCardStyle imgUrl={imgUrl}>
-                <SystemCardATagStyle href={system.link} rel='link' >
-                        <h1>{system.name}</h1>
-                        <p>{system.description}</p>         
+                    <SystemCardATagStyle href={system.link} rel='link' >
+                        <h1>{system.name.substring(0, 100)}</h1>
+                        <p>{system.description.length > 255 ? system.description.substring(0, 255) + "..." : system.description}</p>
                     </SystemCardATagStyle>
-                     {this.state.isFavorite ?
-                            <img onClick={() => this.handleChangeFavorite()} src='/assets/לב.png' width="50px" /> :
-                            <img onClick={() => this.handleChangeFavorite()} src='/assets/לב_אפור.png' width="50px" />}
+                    {this.state.isFavorite ?
+                        <img onClick={() => this.handleChangeFavorite()} src='/assets/animat-heart-color.gif' width="50px" /> :
+                        <img onClick={() => this.handleChangeFavorite()} src='/assets/animat-heart.gif' width="50px" />}
                 </SystemCardStyle>
             </div>
         );
