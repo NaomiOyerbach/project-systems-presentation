@@ -120,9 +120,11 @@ class SystemList extends Component {
       dots: true,
       infinite: true,
       slidesToShow: 3,
-      slidesToScroll: 1,
+      slidesToScroll: 3,
       accessibility: true,
       arrows: true,
+      autoplay: true,
+      autoplayspeed: 3,
       prevArrow: <PrevArrow />,
       nextArrow: <NextArrow />,
     };
